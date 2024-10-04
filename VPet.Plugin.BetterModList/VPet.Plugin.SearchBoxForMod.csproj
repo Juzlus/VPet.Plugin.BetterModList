@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows7.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LinePutScript" Version="1.11.8" />
+    <PackageReference Include="LinePutScript.Localization.WPF" Version="1.0.7" />
+    <PackageReference Include="VPet-Simulator.Core" Version="1.1.0.32" />
+    <PackageReference Include="VPet-Simulator.Windows.Interface" Version="1.1.0.32" />
+  </ItemGroup>
+
+</Project>
