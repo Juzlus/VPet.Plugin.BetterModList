@@ -24,6 +24,7 @@ namespace VPet.Plugin.SearchBoxForMod
     {
         private string path;
         private string lastItemName;
+        private int attempts = 0;
 
         private ListBox listMod;
         private TextBox searchBox;
@@ -44,7 +45,7 @@ namespace VPet.Plugin.SearchBoxForMod
         {
             this.path = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).FullName;
             this.LoadFavorities();
-            this.CreateBuyListing();
+            this.EditListMod();
         }
 
         private void LoadFavorities()
@@ -55,16 +56,22 @@ namespace VPet.Plugin.SearchBoxForMod
                 this.favorities.Add(line);
         }
 
-        private async void CreateBuyListing()
+        private async void EditListMod()
         {
-            if (Application.Current.Windows.Count < 2)
+            WindowX winGameSettings = null;
+            foreach (WindowX winX in Application.Current.Windows)
+                if (winX.ToString() == "VPet_Simulator.Windows.winGameSetting")
+                    winGameSettings = winX;
+
+            if (winGameSettings == null)
             {
                 await Task.Delay(1000);
-                CreateBuyListing();
+                if (this.attempts <= 10)
+                    this.EditListMod();
+                this.attempts++;
                 return;
             }
 
-            WindowX winGameSettings = (WindowX)Application.Current.Windows[1];
             ListBox listBox = (ListBox)winGameSettings.FindName("ListMod");
             if (listBox == null) return;
             this.listMod = listBox;
