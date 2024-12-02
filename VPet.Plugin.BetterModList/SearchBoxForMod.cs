@@ -59,9 +59,9 @@ namespace VPet.Plugin.SearchBoxForMod
         private async void EditListMod()
         {
             WindowX winGameSettings = null;
-            foreach (WindowX winX in Application.Current.Windows)
+            foreach (object winX in Application.Current.Windows)
                 if (winX.ToString() == "VPet_Simulator.Windows.winGameSetting")
-                    winGameSettings = winX;
+                    winGameSettings = (WindowX)winX;
 
             if (winGameSettings == null)
             {
